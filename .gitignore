@@ -10,6 +10,9 @@
 # dependencies
 /angular/node_modules
 /node/node_modules
+/node/package-lock.json
+/node/package-lock.json
+
 # profiling files
 /angular/chrome-profiler-events*.json
 /angular/speed-measure-plugin*.json
