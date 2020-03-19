@@ -4,17 +4,16 @@ let { verificaToken, vefificaAdmin_Role } = require('../middlewares/autenticacio
 
 let app = express();
 
-let Categoria = require('../models/categoria');
+let RRHH = require('../models/rrhh');
 
 // ============================
 // Mostrar todas las categorias
 // ============================
-app.get('/categoria', verificaToken, (req, res) => {
+app.get('/rrhh', verificaToken, (req, res) => {
 
-    Categoria.find({})
-        .sort('descripcion')
-        .populate('usuario', 'nombre email')
-        .exec((err, categorias) => {
+    RRHH.find({})
+        .sort('apellidos')
+        .exec((err, rrhh) => {
 
             if (err) {
                 return res.status(500).json({
@@ -25,21 +24,21 @@ app.get('/categoria', verificaToken, (req, res) => {
 
             res.json({
                 ok: true,
-                categorias
+                rrhh
             });
 
-        })
+        });
 });
 
 // ============================
 // Mostrar una categoria por ID
 // ============================
-app.get('/categoria/:id', verificaToken, (req, res) => {
+app.get('/rrhh/:id', verificaToken, (req, res) => {
     // Categoria.findById(....);
 
     let id = req.params.id;
 
-    Categoria.findById(id, (err, categoriaDB) => {
+    RRHH.findById(id, (err, rrhhDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -48,7 +47,7 @@ app.get('/categoria/:id', verificaToken, (req, res) => {
             });
         }
 
-        if (!categoriaDB) {
+        if (!rrhhDB) {
             return res.status(500).json({
                 ok: false,
                 err: {
@@ -60,7 +59,7 @@ app.get('/categoria/:id', verificaToken, (req, res) => {
 
         res.json({
             ok: true,
-            categoria: categoriaDB
+            categoria: rrhhDB
         });
 
     });
@@ -69,20 +68,26 @@ app.get('/categoria/:id', verificaToken, (req, res) => {
 });
 
 // ============================
-// Crear nueva categoria
+// Crear nuevo perfil
 // ============================
-app.post('/categoria', verificaToken, (req, res) => {
+app.post('/rrhh', verificaToken, (req, res) => {
     // regresa la nueva categoria
     // req.usuario._id
     let body = req.body;
 
-    let categoria = new Categoria({
-        descripcion: body.descripcion,
+    let rrhh = new RRHH({
+        nombres: body.nombres,
+        apellidos: body.apellidos,
+        email: body.email,
+        dpi: body.dpi,
+        telefonos: body.telefonos,
+        fecha: body.fecha,
+        estado: body.estado,
         usuario: req.usuario._id
     });
 
 
-    categoria.save((err, categoriaDB) => {
+    rrhh.save((err, rrhhDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -91,7 +96,7 @@ app.post('/categoria', verificaToken, (req, res) => {
             });
         }
 
-        if (!categoriaDB) {
+        if (!rrhhDB) {
             return res.status(400).json({
                 ok: false,
                 err
@@ -100,7 +105,7 @@ app.post('/categoria', verificaToken, (req, res) => {
 
         res.json({
             ok: true,
-            categoria: categoriaDB
+            rrhh: rrhhDB
         });
 
 
@@ -112,16 +117,23 @@ app.post('/categoria', verificaToken, (req, res) => {
 // ============================
 // Mostrar todas las categorias
 // ============================
-app.put('/categoria/:id', verificaToken, (req, res) => {
+app.put('/rrhh/:id', verificaToken, (req, res) => {
 
     let id = req.params.id;
     let body = req.body;
 
-    let descCategoria = {
-        descripcion: body.descripcion
+    let rrhh = {
+        nombres: body.nombres,
+        apellidos: body.apellidos,
+        email: body.email,
+        telefonos: body.telefonos,
+        dpi: body.dpi,
+        fecha: body.fecha,
+        estado: body.estado,
+        usuario: req.usuario._id
     };
 
-    Categoria.findByIdAndUpdate(id, descCategoria, { new: true, runValidators: true }, (err, categoriaDB) => {
+    RRHH.findOneAndUpdate(id, rrhh, { new: true, runValidators: true }, (err, rrhhDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -130,7 +142,7 @@ app.put('/categoria/:id', verificaToken, (req, res) => {
             });
         }
 
-        if (!categoriaDB) {
+        if (!rrhhDB) {
             return res.status(400).json({
                 ok: false,
                 err
@@ -139,7 +151,7 @@ app.put('/categoria/:id', verificaToken, (req, res) => {
 
         res.json({
             ok: true,
-            categoria: categoriaDB
+            rrhh: rrhhDB
         });
 
     });
@@ -150,12 +162,12 @@ app.put('/categoria/:id', verificaToken, (req, res) => {
 // ============================
 // Mostrar todas las categorias
 // ============================
-app.delete('/categoria/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
+app.delete('/rrhh/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
     // solo un administrador puede borrar categorias
     // Categoria.findByIdAndRemove
     let id = req.params.id;
 
-    Categoria.findByIdAndRemove(id, (err, categoriaDB) => {
+    RRHH.findByIdAndRemove(id, (err, rrhhDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -164,7 +176,7 @@ app.delete('/categoria/:id', [verificaToken, vefificaAdmin_Role], (req, res) => 
             });
         }
 
-        if (!categoriaDB) {
+        if (!rrhhDB) {
             return res.status(400).json({
                 ok: false,
                 err: {
@@ -175,7 +187,7 @@ app.delete('/categoria/:id', [verificaToken, vefificaAdmin_Role], (req, res) => 
 
         res.json({
             ok: true,
-            message: 'Categoria Borrada'
+            message: 'rrhh Borrada'
         });
 
     });
