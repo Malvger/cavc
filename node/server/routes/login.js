@@ -59,27 +59,19 @@ async function verify(token) {
     const ticket = await client.verifyIdToken({
         idToken: token,
         audience: process.env.CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
-        // Or, if multiple clients access the backend:
-        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
     });
     const payload = ticket.getPayload();
-    //const userid = payload['sub'];
-
     return {
         nombre: payload.name,
         email: payload.email,
         img: payload.picture,
         google: true
     };
-
-
-
 }
 
 
 app.post('/google', async(req, res) => {
     let idtoken = req.body.idtoken;
-
     let googleUser = await verify(idtoken)
         .catch(e => {
             return res.status(403).json({
@@ -88,11 +80,6 @@ app.post('/google', async(req, res) => {
             })
 
         })
-
-
-    // res.json({
-    //     token: googleUser
-    // });
     Usuario.findOne({ email: googleUser.email }, (err, usuarioDB) => {
         if (err) {
             return res.status(500).json({
@@ -129,10 +116,12 @@ app.post('/google', async(req, res) => {
             usuario.password = ':)';
 
             usuario.save((err, usuarioDB) => {
-                return res.status(500).json({
-                    ok: false,
-                    err
-                });
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        err
+                    });
+                }
                 let token = jwt.sign({
                     Usuario: usuarioDB
                 }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });

@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(require('./routes/index'));
 app.use(express.static('public'));
 
-mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false },
     (err, res) => {
         if (err) throw err;
         console.log('base de datos ONLINE');
@@ -22,4 +22,4 @@ mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: tru
 
 app.listen(process.env.PORT, () => {
     console.log(`Escuchando el puerto ${process.env.PORT}`);
-})
+});

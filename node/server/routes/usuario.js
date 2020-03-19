@@ -1,14 +1,13 @@
 const express = require('express');
 //const bcrypt = require('bcrypt');
 
-//const _ = require('underscore');
+const _ = require('underscore');
 
 const Usuario = require('../models/usuario');
 const { verificaToken, vefificaAdmin_Role } = require('../middlewares/autenticacion');
 const app = express();
 
 app.get('/usuario', verificaToken, (req, res) => {
-
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -27,31 +26,24 @@ app.get('/usuario', verificaToken, (req, res) => {
                 });
             }
             Usuario.count({ estado: true }, (err, conteo) => {
-
                 res.json({
                     ok: true,
                     usuarios,
                     cuantos: conteo
                 });
-
             });
-
         });
-
-
-    // res.json('getUsuario')
 })
 app.post('/usuario', [verificaToken, vefificaAdmin_Role], (req, res) => {
-
 
     let body = req.body;
 
     let usuario = new Usuario({
-        nombre: body.nombre,
         email: body.email,
+        rrhh: body.rrhh,
         password: body.password,
         // password: bcrypt.hashSync(body.password, 10),
-        role: body.role
+        perfil: body.perfil
     });
 
     usuario.save((err, usuarioDB) => {
@@ -67,15 +59,12 @@ app.post('/usuario', [verificaToken, vefificaAdmin_Role], (req, res) => {
         });
     });
 
-    // res.json({
-    //     body
-    // })
-})
+});
 
 app.put('/usuario/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
     let id = req.params.id;
     // let body = req.body;
-    let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
+    let body = _.pick(req.body, ['img', 'rrhh', 'perfil', 'estado']);
 
     Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true }, (err, usuarioDB) => {
         if (err) {
@@ -115,9 +104,8 @@ app.delete('/usuario/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
             ok: true,
             usuario: UsurarioBorrado
         });
-
     });
 
-})
+});
 
-module.exports = app
+module.exports = app;

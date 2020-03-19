@@ -24,8 +24,7 @@ let vefificaAdmin_Role = (req, res, next) => {
     let usuario = req.usuario;
 
     console.log(usuario);
-
-    if (usuario.role === 'ADMIN_ROLE') {
+    if (usuario.perfil === '5e72844f29d0282ef04839e3') { //modificar esta linea 
         next();
 
     } else {
