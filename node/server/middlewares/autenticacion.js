@@ -1,4 +1,7 @@
 const jwt = require('jsonwebtoken');
+let Insumo = require('../models/insumo');
+let Equipo = require('../models/equipo');
+
 
 let verificaToken = (req, res, next) => {
 
@@ -55,12 +58,57 @@ let verificaTokenImg = (req, res, next) => {
         next();
 
     });
-
-
 }
+
+
+
+
+
+let verificaEstadoInsumo = (req, res, next) => {
+    let id = req.params.id;
+    Insumo.find({ _id: id, estado: true }, (err, data) => {
+
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err: err
+            });
+        }
+        if (JSON.stringify(data) === '[]') {
+            return res.status(400).json({
+                ok: false,
+                err: 'Este insumo ya no existe'
+            });
+        }
+        next();
+    });
+}
+
+
+let verificaEstadoEquipo = (req, res, next) => {
+    let id = req.params.id;
+    Equipo.find({ _id: id, estado: true }, (err, data) => {
+
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err: err
+            });
+        }
+        if (JSON.stringify(data) === '[]') {
+            return res.status(400).json({
+                ok: false,
+                err: 'Este equipo ya no existe'
+            });
+        }
+        next();
+    });
+}
+
 module.exports = {
     verificaToken,
     vefificaAdmin_Role,
-    verificaTokenImg
-
+    verificaTokenImg,
+    verificaEstadoInsumo,
+    verificaEstadoEquipo
 }
