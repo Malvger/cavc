@@ -12,16 +12,8 @@ let rrhhSchema = new Schema({
     telefonos: { type: String, required: [true, 'El telefonos es necesario'] },
     fecha: { type: Date },
     estado: { type: Boolean, default: true },
-
+    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' }
 });
 
-usuarioSchema.methods.toJSON = function() {
-    let rrhh = this;
-    let rrhhObject = rrhh.toObject();
-    delete rrhhObject.password;
-    return rrhhObject;
-}
-
-rrhhSchema.plugin(uniqueValidator, { message: '{PATH} debe de ser único' });
 
 module.exports = mongoose.model('RRHH', rrhhSchema);
