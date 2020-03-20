@@ -10,8 +10,6 @@
 # dependencies
 /angular/node_modules
 /node/node_modules
-/node/package-lock.json
-/node/package.
 
 /mikronode/node_modules
 
