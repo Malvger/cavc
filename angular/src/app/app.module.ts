@@ -3,18 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToolbarComponent } from './component/toolbar/toolbar.component';
-import { LetSidebarComponent } from './component/let-sidebar/let-sidebar.component';
-import { PageWrapperComponent } from './component/page-wrapper/page-wrapper.component';
-import { NavbarComponent } from './component/contener/navbar/navbar.component';
+import { NavbarComponent } from './components/contener/navbar/navbar.component';
+import { MenuComponent } from './components/contener/menu/menu.component';
+import { FooterComponent } from './components/contener/footer/footer.component';
+import { BnloginComponent } from './components/contener/bnlogin/bnlogin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
-    LetSidebarComponent,
-    PageWrapperComponent,
-    NavbarComponent
+    NavbarComponent,
+    MenuComponent,
+    FooterComponent,
+    BnloginComponent
 
   ],
   imports: [

@@ -27,9 +27,7 @@
                             "src/styles.css",
                             "src/assets/lib/bootstrap/css/bootstrap.min.css"
                         ],
-                        "scripts": [
-                            // "src/assets/lib/bootstrap/js/bootstrap.min.js"
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {
@@ -63,6 +61,8 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
+                        "host": "0.0.0.0",
+                        "port": 8080,
                         "browserTarget": "cavc:build"
                     },
                     "configurations": {
@@ -70,6 +70,7 @@
                             "browserTarget": "cavc:build:production"
                         }
                     }
+
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -90,6 +91,7 @@
                         ],
                         "styles": [
                             "src/styles.css"
+
                         ],
                         "scripts": []
                     }

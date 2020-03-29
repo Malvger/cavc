@@ -1,0 +1,9 @@
+.dropdown-menu {
+    top: 3rem;
+    width: 200px;
+}
+
+.piclogin {
+    width: 32px;
+    content: url('/assets/img/users/1.jpg');
+}
