@@ -5,5 +5,10 @@
 
 .piclogin {
     width: 32px;
-    content: url('/assets/img/users/1.jpg');
+}
+
+.username {
+    width: 100%;
+    text-align: center;
+    /* top: 0; */
 }
