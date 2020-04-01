@@ -1,20 +1,19 @@
 const express = require('express');
-
-let { verificaToken, vefificaAdmin_Role } = require('../middlewares/autenticacion');
-
 let app = express();
 
-let Perfil = require('../models/perfil');
+let SubMenu = require('../models/submenu');
+let Menu = require('../models/menu');
+let { verificaEstadoSubMenu } = require('../middlewares/autenticacion');
 
 // ============================
-// Mostrar todas las categorias
+// Mostrar todos los 
 // ============================
-app.get('/perfil', verificaToken, (req, res) => {
 
-    Perfil.find({})
-        .sort('descripcion')
-        .populate('usuario', 'nombre email')
-        .exec((err, perfil) => {
+app.get('/submenu', (req, res) => {
+
+    SubMenu.find({ estado: true })
+        .sort({ nombre: 'asc' })
+        .exec((err, submenu) => {
 
             if (err) {
                 return res.status(500).json({
@@ -25,21 +24,19 @@ app.get('/perfil', verificaToken, (req, res) => {
 
             res.json({
                 ok: true,
-                perfil
+                submenu
             });
 
-        });
+        })
 });
 
 // ============================
-// Mostrar una categoria por ID
+// Mostrar un por ID
 // ============================
-app.get('/perfil/:id', verificaToken, (req, res) => {
-    // Categoria.findById(....);
-
+app.get('/submenu/:id', verificaEstadoSubMenu, (req, res) => {
     let id = req.params.id;
 
-    Perfil.findById(id, (err, perfilDB) => {
+    SubMenu.findById(id, (err, submenuDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -48,7 +45,7 @@ app.get('/perfil/:id', verificaToken, (req, res) => {
             });
         }
 
-        if (!perfilDB) {
+        if (!submenuDB) {
             return res.status(500).json({
                 ok: false,
                 err: {
@@ -60,7 +57,7 @@ app.get('/perfil/:id', verificaToken, (req, res) => {
 
         res.json({
             ok: true,
-            categoria: perfilDB
+            submenu: submenuDB
         });
 
     });
@@ -69,21 +66,24 @@ app.get('/perfil/:id', verificaToken, (req, res) => {
 });
 
 // ============================
-// Crear nuevo perfil
+// Crear un nuevo 
 // ============================
-app.post('/perfil', verificaToken, (req, res) => {
-    // regresa la nueva categoria
-    // req.usuario._id
+
+app.post('/submenu', (req, res) => {
+
     let body = req.body;
 
-    let perfil = new Perfil({
+    let submenu = new SubMenu({
         nombre: body.nombre,
         descripcion: body.descripcion,
-        usuario: req.usuario._id
+        class: body.class,
+        style: body.style,
+        menu: body.menu,
+        url: body.url
     });
 
 
-    perfil.save((err, perfilDB) => {
+    submenu.save((err, submenuDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -92,7 +92,7 @@ app.post('/perfil', verificaToken, (req, res) => {
             });
         }
 
-        if (!perfilDB) {
+        if (!submenuDB) {
             return res.status(400).json({
                 ok: false,
                 err
@@ -101,50 +101,57 @@ app.post('/perfil', verificaToken, (req, res) => {
 
         res.json({
             ok: true,
-            perfil: perfilDB
+            submenu: submenuDB
         });
+    });
+});
 
+
+app.put('/submenu/:id', verificaEstadoSubMenu, (req, res) => {
+
+    let id = req.params.id;
+    let body = req.body;
+
+    SubMenu.findByIdAndUpdate(id, body, { new: true, runValidators: true }, (err, submenuDB) => {
+
+        if (err) {
+            return res.status(500).json({
+                ok: false,
+                err
+            });
+        }
+
+        if (!submenuDB) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
+
+        res.json({
+            ok: true,
+            message: 'Submenu modificado',
+            submenuDB
+        });
 
     });
 
 
 });
-app.post('/perfil/menu', verificaToken, async(req, res) => {
-    //let id = req.params.id;
-    let body = req.body;
-    try {
-        let perfil = await Perfil.findById(body.perfil);
-        perfil.menus.push(body.menu);
-        perfil.save();
-        res.json({
-            ok: true,
-            perfil
-        });
-    } catch (err) {
-        res.json({
-            ok: false,
-            err
-        });
+
+// ============================
+// Eliminar
+// ============================
+
+app.delete('/submenu/:id', (req, res) => {
+
+    let id = req.params.id;
+
+    let cambio = {
+        estado: false
     }
 
-});
-
-
-// ============================
-// Mostrar todas las categorias
-// ============================
-app.put('/perfil/:id', verificaToken, (req, res) => {
-
-    let id = req.params.id;
-    let body = req.body;
-
-    let perfil = {
-        nombre: body.nombre,
-        descripcion: body.descripcion,
-        usuario: req.usuario._id
-    };
-
-    Perfil.findOneAndUpdate(id, perfil, { new: true, runValidators: true }, (err, perfilDB) => {
+    Menu.findByIdAndUpdate(id, cambio, { new: true }, (err, submenuDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -153,41 +160,7 @@ app.put('/perfil/:id', verificaToken, (req, res) => {
             });
         }
 
-        if (!perfilDB) {
-            return res.status(400).json({
-                ok: false,
-                err
-            });
-        }
-
-        res.json({
-            ok: true,
-            categoria: perfilDB
-        });
-
-    });
-
-
-});
-
-// ============================
-// Mostrar todas las categorias
-// ============================
-app.delete('/perfil/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
-    // solo un administrador puede borrar categorias
-    // Categoria.findByIdAndRemove
-    let id = req.params.id;
-
-    Perfil.findByIdAndRemove(id, (err, perfilDB) => {
-
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
-            });
-        }
-
-        if (!perfilDB) {
+        if (!submenuDB) {
             return res.status(400).json({
                 ok: false,
                 err: {
@@ -198,12 +171,10 @@ app.delete('/perfil/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
 
         res.json({
             ok: true,
-            message: 'Perfil Borrada'
+            message: 'Submenu Borrada',
+            submenuDB
         });
-
     });
-
-
 });
 
 

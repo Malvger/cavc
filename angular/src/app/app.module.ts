@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/contener/navbar/navbar.component';
 import { MenuComponent } from './components/contener/menu/menu.component';
 import { FooterComponent } from './components/contener/footer/footer.component';
 import { BnloginComponent } from './components/contener/bnlogin/bnlogin.component';
+import { TabsComponent } from './components/contener/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BnloginComponent } from './components/contener/bnlogin/bnlogin.componen
     NavbarComponent,
     MenuComponent,
     FooterComponent,
-    BnloginComponent
+    BnloginComponent,
+    TabsComponent
 
   ],
   imports: [

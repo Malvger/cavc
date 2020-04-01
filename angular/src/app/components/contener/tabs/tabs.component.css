@@ -1,0 +1,6 @@
+.float-left {
+    float: right;
+    margin-top: 28px;
+    margin-left: 250px;
+    width: fit-content;
+}

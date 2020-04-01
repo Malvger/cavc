@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 let Insumo = require('../models/insumo');
 let Equipo = require('../models/equipo');
+let Menu = require('../models/menu');
+let SubMenu = require('../models/submenu');
 
 
 let verificaToken = (req, res, next) => {
@@ -77,7 +79,45 @@ let verificaEstadoInsumo = (req, res, next) => {
         if (JSON.stringify(data) === '[]') {
             return res.status(400).json({
                 ok: false,
-                err: 'Este insumo ya no existe'
+                err: 'Este Indumo ya no existe'
+            });
+        }
+        next();
+    });
+}
+let verificaEstadoMenu = (req, res, next) => {
+    let id = req.params.id;
+    Menu.find({ _id: id, estado: true }, (err, data) => {
+
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err: err
+            });
+        }
+        if (JSON.stringify(data) === '[]') {
+            return res.status(400).json({
+                ok: false,
+                err: 'Este Menu ya no existe'
+            });
+        }
+        next();
+    });
+}
+let verificaEstadoSubMenu = (req, res, next) => {
+    let id = req.params.id;
+    SubMenu.find({ _id: id, estado: true }, (err, data) => {
+
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err: err
+            });
+        }
+        if (JSON.stringify(data) === '[]') {
+            return res.status(400).json({
+                ok: false,
+                err: 'Este sub menu ya no existe'
             });
         }
         next();
@@ -110,5 +150,7 @@ module.exports = {
     vefificaAdmin_Role,
     verificaTokenImg,
     verificaEstadoInsumo,
-    verificaEstadoEquipo
+    verificaEstadoEquipo,
+    verificaEstadoMenu,
+    verificaEstadoSubMenu
 }
