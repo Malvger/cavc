@@ -8,6 +8,7 @@ let menuSchema = new Schema({
     class: { type: String },
     style: { type: String },
     url: { type: String },
+    contener: { type: String },
     estado: { type: Boolean, default: true },
     submenus: [{
         type: mongoose.Schema.Types.ObjectId,

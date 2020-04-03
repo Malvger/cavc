@@ -10,10 +10,19 @@ import { MenuService } from '../../../services/menu/menu.service';
 export class MenuComponent implements OnInit {
   // menuService = new  MenuService();
   public menus = [ ];
-  constructor(private _menuService: MenuService) { }
+  constructor(
+    private _menuService: MenuService
+  ) { }
 
   ngOnInit() {
     this.getMenus();
+  }
+
+  public  newTab(name: string, contener: string) {
+    if (contener.length  !== 0) {
+      const activate = true;
+      this._menuService.newTab({name, contener, activate});
+    }
   }
   setMenus(data ) {
     for (const m in data.menu) {

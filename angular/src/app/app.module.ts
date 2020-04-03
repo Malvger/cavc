@@ -8,10 +8,16 @@ import { MenuComponent } from './components/contener/menu/menu.component';
 import { FooterComponent } from './components/contener/footer/footer.component';
 import { BnloginComponent } from './components/contener/bnlogin/bnlogin.component';
 import { TabsComponent } from './components/contener/tabs/tabs.component';
+// import { TabComponent } from './components/contener/tabs/tab.component';
+// import { Tabs_Component } from './components/contener/tabs/tabs_.component';
+
 import { HttpClientModule } from '@angular/common/http';
-import { from } from 'rxjs';
+import { ContenerComponent } from './components/contener/contener/contener.component';
 
 import {MenuService} from './services/menu/menu.service';
+import { AppConfigModule } from './app.config';
+import { OpGenDiariaComponent } from './components/op/op-gen-diaria/op-gen-diaria.component';
+
 
 @NgModule({
   declarations: [
@@ -20,16 +26,22 @@ import {MenuService} from './services/menu/menu.service';
     MenuComponent,
     FooterComponent,
     BnloginComponent,
-    TabsComponent
+    TabsComponent,
+    // TabComponent,
+    // Tabs_Component,
+    ContenerComponent,
+    OpGenDiariaComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AppConfigModule
   ],
   providers: [
     MenuService,
+
   ],
   bootstrap: [AppComponent]
 })

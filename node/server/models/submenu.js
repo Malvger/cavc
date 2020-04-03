@@ -8,6 +8,7 @@ let menuSchema = new Schema({
     class: { type: String },
     style: { type: String },
     url: { type: String },
+    contener: { type: String },
     menu: { type: Schema.Types.ObjectId, ref: 'Menu' },
     estado: { type: Boolean, default: true },
 
