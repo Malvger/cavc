@@ -114,8 +114,13 @@ app.post('/perfil/menu', verificaToken, async(req, res) => {
     let body = req.body;
     try {
         let perfil = await Perfil.findById(body.perfil);
-        perfil.menus.push(body.menu);
-        perfil.save();
+
+        let m = perfil.menus;
+
+        if (!m.includes(body.menu)) {
+            perfil.menus.push(body.menu);
+            perfil.save();
+        }
         res.json({
             ok: true,
             perfil

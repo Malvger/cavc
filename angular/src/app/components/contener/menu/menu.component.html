@@ -1,74 +1,15 @@
-<!-- Menú -->
-<!-- <div class="accordion left-sidebar mt-2 bg-white" id="accordionExample"> -->
-<!-- <div class="card">
-        <div class="card-header p-0" id="headingDashboard">
-            <h2 class="mb-0 ">
-                <a class="btns btn-light text-left" style="width: 100%;" type="button" data-toggle="collapse" data-target="#collapseDashboard" aria-expanded="true" aria-controls="collapseOne">
-                    <span class="icon-dashboard"></span> Dashboard
-                </a>
-            </h2>
-        </div>
-        <div id="collapseDashboard" class="collapse show submenu" aria-labelledby="headingDashboard" data-parent="#accordionExample">
-            <div class="card-body p-1 pl-4"><span class="icon-submenu"></span>Operaciones</div>
-        </div>
-        <div id="collapseDashboard" class="collapse show submenu" aria-labelledby="headingDashboard" data-parent="#accordionExample">
-            <div class="card-body p-1 pl-4"><span class="icon-submenu"></span>Energia</div>
-        </div>
-    </div> -->
-<!-- <div class="card">
-        <div class="card-header p-0" id="headingOne">
-            <h2 class="mb-0 ">
-                <a class="btn btn-light text-left " style="width: 100%;" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Operaciones</a>
-            </h2>
-        </div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body p-1 pl-4">Generación Diaria</div>
-            <div class="card-body p-1 pl-4">Control de Nivel</div>
-            <div class="card-body p-1 pl-4">Subir ION</div>
-            <div class="card-body p-1 pl-4">Energía Generada</div>
-            <div class="card-body p-1 pl-4">Energía Consumida</div>
-        </div>
-    </div>
-</div> -->
-
-
 <div class="nav-side-menu">
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
-            <li>
-                <a href="#"><i class="zmdi zmdi-view-dashboard zmdi-hc-lg"></i> Dashboard</a>
-            </li>
-            <li data-toggle="collapse" data-target="#operciones" class="collapsed active">
-                <a href="#"><i class="zmdi zmdi-lamp zmdi-hc-lg"></i>Operación <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="operciones">
-                <li class="active"><a href="#">Generación Diaria</a></li>
-                <li><a href="#">Control de Nivel</a></li>
-            </ul>
-            <li data-toggle="collapse" data-target="#energia" class="collapsed">
-                <a href="#"><i class="zmdi zmdi-sun zmdi-hc-lg"></i>Energía <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="energia">
-                <li><a href="#">Generada</a></li>
-                <li><a href="#">Consumida</a></li>
-                <li><a href="#">Subir ION</a></li>
-            </ul>
-            <li data-toggle="collapse" data-target="#mantenimiento" class="collapsed">
-                <a href="#"><i class="zmdi zmdi-wrench zmdi-hc-lg"></i>Mantenimiento <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="mantenimiento">
-                <li><a href="#">Orden de Servicio</a></li>
-                <li><a href="#">Actividades</a></li>
-                <li><a href="#">Insumos</a></li>
-            </ul>
-            <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Services<span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="service">
-                <li>New Service 1</li>
-                <li>New Service 2</li>
-                <li>New Service 3</li>
-            </ul>
+            <div *ngFor="let item of menus; let i=index">
+                <li data-toggle="collapse" [attr.data-target]="'#menu' + i " class="collapsed">
+                    <a href="#"><i [class]="item.class"></i>{{item.nombre}} <span *ngIf="item.submenus.length!=0" class="arrow"></span></a>
+                </li>
+                <ul *ngFor="let item2 of getSubMenu(menus,i); let i2=index" class="sub-menu collapse" [id]="'menu' + i">
+                    <li><a href="#">{{item2.nombre}}</a></li>
+                </ul>
+
+            </div>
         </ul>
     </div>
 </div>

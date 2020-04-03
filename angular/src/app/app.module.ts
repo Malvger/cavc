@@ -11,6 +11,9 @@ import { TabsComponent } from './components/contener/tabs/tabs.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule} from '@angular/common/http';
 import { LoginService } from './service/login.service';
+import { HttpClientModule } from '@angular/common/http';
+import { from } from 'rxjs';
+import {MenuService} from './services/menu/menu.service';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,13 @@ import { LoginService } from './service/login.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
+    thevoidloop
   ],
   providers: [LoginService],
+  ],
+  providers: [
+    MenuService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
