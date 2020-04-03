@@ -13,16 +13,18 @@ const app = express();
 app.post('/login', (req, res) => {
 
     let body = req.body;
+    console.log(body);
+    console.log(body.email);
 
     Usuario.findOne({ email: body.email }, (err, usuarioDB) => {
         if (err) {
-            return res.status(500).json({
+            return res.status(200).json({
                 ok: false,
                 err
             });
         }
         if (!usuarioDB) {
-            return res.status(400).json({
+            return res.status(200).json({
                 ok: false,
                 err: {
                     message: "(Usuario) o contraseña incorretos"
@@ -32,7 +34,7 @@ app.post('/login', (req, res) => {
 
         if (!(body.password === usuarioDB.password)) {
 
-            return res.status(400).json({
+            return res.status(200).json({
                 ok: false,
                 err: {
                     message: "Usuario o (contraseña) incorretos"
@@ -45,7 +47,7 @@ app.post('/login', (req, res) => {
         }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
         res.json({
             ok: true,
-            Usuario: usuarioDB,
+            id: usuarioDB._id,
             token
         });
 

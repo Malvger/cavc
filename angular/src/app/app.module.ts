@@ -8,9 +8,11 @@ import { MenuComponent } from './components/contener/menu/menu.component';
 import { FooterComponent } from './components/contener/footer/footer.component';
 import { BnloginComponent } from './components/contener/bnlogin/bnlogin.component';
 import { TabsComponent } from './components/contener/tabs/tabs.component';
+import { LoginComponent } from './components/login/login.component';
+import { HttpClientModule} from '@angular/common/http';
+import { LoginService } from './service/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
-
 import {MenuService} from './services/menu/menu.service';
 
 @NgModule({
@@ -20,13 +22,16 @@ import {MenuService} from './services/menu/menu.service';
     MenuComponent,
     FooterComponent,
     BnloginComponent,
-    TabsComponent
-
-  ],
+    TabsComponent,
+    LoginComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
+    thevoidloop
+  ],
+  providers: [LoginService],
   ],
   providers: [
     MenuService,
