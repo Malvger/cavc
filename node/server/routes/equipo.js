@@ -2,11 +2,12 @@ const express = require('express');
 let app = express();
 
 let Equipo = require('../models/equipo');
-let { verificaEstadoEquipo } = require('../middlewares/autenticacion');
+let { verificaEstadoEquipo, cors } = require('../middlewares/autenticacion');
 
 // ============================
 // Mostrar todos los insumos
 // ============================
+
 
 app.get('/equipo', (req, res) => {
 
