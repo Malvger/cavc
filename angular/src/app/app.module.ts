@@ -8,6 +8,9 @@ import { MenuComponent } from './components/contener/menu/menu.component';
 import { FooterComponent } from './components/contener/footer/footer.component';
 import { BnloginComponent } from './components/contener/bnlogin/bnlogin.component';
 import { TabsComponent } from './components/contener/tabs/tabs.component';
+import { LoginComponent } from './components/login/login.component';
+import { HttpClientModule} from '@angular/common/http';
+import { LoginService } from './service/login.service';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,15 @@ import { TabsComponent } from './components/contener/tabs/tabs.component';
     MenuComponent,
     FooterComponent,
     BnloginComponent,
-    TabsComponent
-
-  ],
+    TabsComponent,
+    LoginComponent
+    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

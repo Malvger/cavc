@@ -5,6 +5,7 @@ let Menu = require('../models/menu');
 let SubMenu = require('../models/submenu');
 
 
+
 let verificaToken = (req, res, next) => {
 
     let token = req.get("token");
