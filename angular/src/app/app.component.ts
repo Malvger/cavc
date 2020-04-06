@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginService } from './service/login.service';
-import { LocalStorageService } from './service/local-storage.service';
-
+import { LocalStorageService } from './services/login/local-storage.service';
+import { LoginService } from './services/login/login.service';
 
 @Component({
   selector: 'app-root',

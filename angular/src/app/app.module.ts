@@ -8,17 +8,17 @@ import { MenuComponent } from './components/contener/menu/menu.component';
 import { FooterComponent } from './components/contener/footer/footer.component';
 import { BnloginComponent } from './components/contener/bnlogin/bnlogin.component';
 import { TabsComponent } from './components/contener/tabs/tabs.component';
-// import { TabComponent } from './components/contener/tabs/tab.component';
-// import { Tabs_Component } from './components/contener/tabs/tabs_.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ContenerComponent } from './components/contener/contener/contener.component';
-import { LoginService } from './service/login.service';
+import { LoginService } from './services/login/login.service';
 import {MenuService} from './services/menu/menu.service';
 import { AppConfigModule } from './app.config';
 import { OpGenDiariaComponent } from './components/op/op-gen-diaria/op-gen-diaria.component';
 import { LoginComponent } from '../app/components/login/login.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
+import { LocalStorageService } from './services/login/local-storage.service';
+
 
 @NgModule({
   declarations: [
@@ -28,8 +28,6 @@ import { FormularioComponent } from './components/formulario/formulario.componen
     FooterComponent,
     BnloginComponent,
     TabsComponent,
-    // TabComponent,
-    // Tabs_Component,
     ContenerComponent,
     OpGenDiariaComponent,
     LoginComponent,
@@ -43,9 +41,10 @@ import { FormularioComponent } from './components/formulario/formulario.componen
     AppConfigModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
     ],
-  providers: [LoginService , MenuService],
+  providers: [LoginService , MenuService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,9 +11,13 @@ export class TabsComponent implements OnInit {
   constructor(private menuService: MenuService) {
     this.tabs = this.menuService.tabs;
   }
-//active active show
   public  closeTab(index) {
     this.menuService.closeTab(index);
+  }
+  selectTab(tab){
+
+    this.tabs.forEach(tab => tab.activate = false);
+    tab.activate = true;
   }
   public getActivate(index: number, t: number= 0): string {
     if (t === 0) {
