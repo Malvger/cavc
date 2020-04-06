@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../service/login.service';
-import { Data } from '../../class/login';
+
+declare var xepOnline: any;
 
 @Component({
   selector: 'app-login',

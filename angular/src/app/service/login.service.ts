@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Data } from '../class/login';
-import { Observable } from 'rxjs';
-import { AppComponent } from '../app.component';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +11,7 @@ export class LoginService {
   public alerta = false;
   public token: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storage: LocalStorageService) {
 
   }
 
@@ -47,13 +45,16 @@ export class LoginService {
     console.log(res.ok);
     if (res.ok) {
       this.token = res.token;
-      console.log(this.token);
       this.login = true;
+      this.storage.setLocalStorage('sesion', JSON.stringify(res));
       return false;
     }
     });
     return true;
   }
 
+  setLogin(login: boolean) {
+    this.login = login;
+  }
 }
 
