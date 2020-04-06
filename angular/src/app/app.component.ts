@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from './services/login/local-storage.service';
 import { LoginService } from './services/login/login.service';
 
 @Component({
@@ -11,7 +12,13 @@ export class AppComponent {
   title = 'cavc';
 
 
-  constructor(private loginService: LoginService){
+  constructor(private loginService: LoginService, private storage: LocalStorageService) {
+    const sesion = this.storage.getLocalStorage('sesion');
+    if (sesion === null) {
+      this.loginService.setLogin(false);
+    } else {
+      this.loginService.setLogin(true);
+    }
   }
 
 

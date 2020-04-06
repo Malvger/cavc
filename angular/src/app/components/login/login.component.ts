@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var xepOnline: any;
 import { LoginService } from '../../services/login/login.service';
 import { Data } from '../../class/login';
 

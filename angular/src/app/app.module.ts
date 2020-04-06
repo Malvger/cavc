@@ -11,12 +11,13 @@ import { TabsComponent } from './components/contener/tabs/tabs.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ContenerComponent } from './components/contener/contener/contener.component';
-import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login/login.service';
 import {MenuService} from './services/menu/menu.service';
 import { AppConfigModule } from './app.config';
 import { OpGenDiariaComponent } from './components/op/op-gen-diaria/op-gen-diaria.component';
-
+import { LoginComponent } from '../app/components/login/login.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import { LocalStorageService } from './services/login/local-storage.service';
 
 
 @NgModule({
@@ -26,10 +27,11 @@ import { OpGenDiariaComponent } from './components/op/op-gen-diaria/op-gen-diari
     MenuComponent,
     FooterComponent,
     BnloginComponent,
-    LoginComponent,
     TabsComponent,
     ContenerComponent,
     OpGenDiariaComponent,
+    LoginComponent,
+    FormularioComponent
 
   ],
   imports: [
@@ -42,7 +44,7 @@ import { OpGenDiariaComponent } from './components/op/op-gen-diaria/op-gen-diari
     HttpClientModule,
 
     ],
-  providers: [LoginService , MenuService],
+  providers: [LoginService , MenuService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
