@@ -15,7 +15,7 @@ async function subMenus(m) {
         } else {
             let submenus = await SubMenu.find({ menu: m });
             menu.submenus = submenus;
-            console.log(menu);
+            // console.log(menu);
         }
         return menu;
     } catch (error) {

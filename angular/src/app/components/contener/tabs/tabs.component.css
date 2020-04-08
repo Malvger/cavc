@@ -26,3 +26,18 @@
     border-bottom: 1px solid black;
     ;
 }
+
+.tab-content {
+    /* background: #fdfdfd; */
+    line-height: 25px;
+    /* border: 1px solid rgba(5, 3, 3, 0.96); */
+    /* width: 100%;
+    height: 100%; */
+    /* border-top: 1px solid black; */
+    /* border-bottom: 1px solid black; */
+    padding: 30px 25px;
+}
+
+.float-left {
+    /* width: 100px; */
+}

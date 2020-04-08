@@ -36,7 +36,7 @@ export class TabsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("int");
+    // console.log("int");
   }
 
 }

@@ -18,11 +18,17 @@ export class AppComponent {
       this.loginService.setLogin(false);
     } else {
       this.loginService.setLogin(true);
+      const decode_token = this.storage.getLocalToken();
+      if (!decode_token) {
+        console.log('Token invalido');
+      } else {
+        // console.log(decode_token);
+      }
     }
   }
 
 
-  public getLogin(){
+  public getLogin() {
     return this.loginService.login;
   }
 }

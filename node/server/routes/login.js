@@ -13,8 +13,8 @@ const app = express();
 app.post('/login', (req, res) => {
 
     let body = req.body;
-    console.log(body);
-    console.log(body.email);
+    // console.log(body);
+    // console.log(body.email);
 
     Usuario.findOne({ email: body.email }, (err, usuarioDB) => {
         if (err) {
@@ -41,10 +41,12 @@ app.post('/login', (req, res) => {
                 }
             });
         }
+        // console.log(process.env.CADUCIDAD_TOKEN);
         let token = jwt.sign({
             Usuario: usuarioDB
 
         }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
+
         res.json({
             ok: true,
             id: usuarioDB._id,
@@ -98,6 +100,7 @@ app.post('/google', async(req, res) => {
                     }
                 });
             } else {
+                // console.log(process.env.CADUCIDAD_TOKEN);
                 let token = jwt.sign({
                     Usuario: usuarioDB
                 }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
@@ -124,6 +127,7 @@ app.post('/google', async(req, res) => {
                         err
                     });
                 }
+
                 let token = jwt.sign({
                     Usuario: usuarioDB
                 }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });

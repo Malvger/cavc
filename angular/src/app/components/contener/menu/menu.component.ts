@@ -19,9 +19,11 @@ export class MenuComponent implements OnInit {
   }
 
   public  newTab(name: string, contener: string) {
-    if (contener.length  !== 0) {
-      const activate = true;
-      this._menuService.newTab({name, contener, activate});
+    if (contener) {
+      if (contener.length  !== 0) {
+        const activate = true;
+        this._menuService.newTab({name, contener, activate});
+      }
     }
   }
   setMenus(data ) {
