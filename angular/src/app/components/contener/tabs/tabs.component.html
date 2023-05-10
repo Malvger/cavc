@@ -8,8 +8,8 @@
     </nav>
     <div class="tab-content">
         <div *ngFor="let panel of tabs ; let f=index" [hidden]="!panel.activate">
-            <h2>{{panel.name + f}}</h2>
-            <app-contener [contener]='panel.contener'></app-contener>
+            <!-- <h2>{{panel.name + f}}</h2> -->
+            <app-contener [contener]='panel.contener' [data]='panel.data'></app-contener>
         </div>
     </div>
 </div>

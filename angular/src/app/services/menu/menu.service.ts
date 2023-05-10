@@ -26,6 +26,9 @@ export class MenuService {
   ) {}
   public  closeTab(index) {
     this.tabs.splice( (index), 1 );
+    if (this.tabs.length > 0) {
+      this.tabs[this.tabs.length - 1].activate = true;
+    }
   }
   public newTab(tab: Tab) {
     this.tabs.forEach( tab => {

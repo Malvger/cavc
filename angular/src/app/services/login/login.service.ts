@@ -37,7 +37,6 @@ export class LoginService {
     if (res.ok) {
       this.token = res.token;
       this.login = true;
-      // console.log(this.helper.decodeToken(this.token)); ;
       this.storage.setLocalStorage('sesion', JSON.stringify(res));
       return false;
     }

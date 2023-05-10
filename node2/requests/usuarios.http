@@ -1,0 +1,11 @@
+@api=http://localhost:5000/usuarios/
+###
+GET {{api}}
+###
+POST  {{api}}
+Content-Type: application/json
+
+{
+    "nombre" : "mjtr",
+    "perfil" : "1"
+}

@@ -8,6 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 })
 export class ContenerComponent implements OnInit {
   @Input() contener: string;
+  @Input() data: any;
+
   constructor() {
     // console.log(this.contener);
    }

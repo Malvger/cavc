@@ -47,3 +47,7 @@
 # System Files
 /angular/.DS_Store
 /angular/Thumbs.db
+
+/node2/.env
+/node2/node_modules
+/node/node_modules

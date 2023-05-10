@@ -1,0 +1,38 @@
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: 'FalconMasters';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-house:before {
+    content: url('/assets/img/png/home-2x.png');
+}
+
+
+/* .icon-dashboard:before {
+    content: url('/assets/img/png/monitor-2x.png');
+} */
+
+.icon-submenu:before {
+    content: url('/assets/img/png/list-rich-2x.png');
+}

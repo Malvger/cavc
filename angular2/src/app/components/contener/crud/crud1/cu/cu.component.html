@@ -1,0 +1,40 @@
+<h1 *ngIf="data.data.id!=='new'">{{data.name}}<small> - Actualizar registro</small></h1>
+<h1 *ngIf="data.data.id==='new'">{{data.name}}<small> - Nuevo registro</small></h1>
+<hr>
+<!-- <p>{{datos |json}}</p> -->
+<div class="row animated fadeIn faster">
+    <div class="col">
+        <form #f="ngForm" (ngSubmit)="guardar(f)">
+            <div *ngFor="let thead of crudModel.theads ; let i=index" class="form-group">
+                <ng-container *ngIf="visualizar(thead)">
+                    <label>{{thead.label}}</label>
+                    <!-- <p>{{thead |json}} [id]="thead.name"  </p> -->
+                    <!-- <p>{{getIxT(thead.name)}}</p> -->
+                    <input *ngIf="thead.type==='ObjectID'" [required]="thead.required" type="text" class="form-control" [disabled]="thead.disable" [placeholder]="thead.label" [name]="thead.name" [ngModel]="getIxT(thead)">
+                    <input *ngIf="thead.type==='text'" (ngModelChange)="chagerData(thead.name,$event)" [required]="thead.required" type="text" class="form-control" [disabled]="thead.disable" [placeholder]="thead.label" [name]="thead.name" [ngModel]="getIxT(thead)">
+                    <input *ngIf="thead.type==='datetime'" [required]="thead.required" type="datetime" datetime="yyyy-MM-dd HH:mm:ss" type="text" class="form-control" [disabled]="thead.disable" [placeholder]="thead.label" [name]="thead.name" [ngModel]="getIxT(thead)">
+                    <input *ngIf="thead.type==='date'" [required]="thead.required" type="date" datetime="yyyy-MM-dd" type="text" class="form-control" [disabled]="thead.disable" [placeholder]="thead.label" [name]="thead.name" [ngModel]="getIxT(thead)">
+                </ng-container>
+            </div>
+            <!-- <div class="form-group" *ngIf="crudModel.theads.length>cArray(datos)">
+                <label>Nuevo Campo</label>
+                <div class="form-control align-content-center">
+                    <select id="newc" class="w-75 border-0" (change)="fSelected($event.target.value)">
+                      <option  value="" selected></option>
+                      <ng-container *ngFor="let thead of crudModel.theads ; let i=index" class="form-group">
+                        <option *ngIf="Otros(thead)" [value]="thead.name">{{thead.label}}</option>
+                      </ng-container>
+                    </select>
+                    <input *ngIf="ncs!=-1" class="w-25 border-0" type="button" value="Add" (click)="newCampo(this.$event)">
+                </div>
+            </div> -->
+            <div class="form-group">
+                <button [disabled]="f.invalid" type="submit" class="btn btn-primary w25">
+                  <i class="fa fa-save"></i>
+                  Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>

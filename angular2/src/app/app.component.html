@@ -1,0 +1,12 @@
+<div *ngIf="getLogin()==true">
+    <app-navbar></app-navbar>
+    <div class="container-fluid mt-5 pt-0 pl-0">
+        <app-menu></app-menu>
+        <app-tabs></app-tabs>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+<div *ngIf="getLogin()==false">
+    <app-login> </app-login>
+</div>

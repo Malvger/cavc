@@ -20,13 +20,16 @@
         "@angular/platform-browser-dynamic": "~8.2.14",
         "@angular/router": "~8.2.14",
         "@auth0/angular-jwt": "^4.0.0",
+        "@popperjs/core": "^2.11.5",
         "angular-in-memory-web-api": "^0.10.0",
         "bootstrap": "^4.4.1",
         "pdfkitjs": "0.0.5",
         "rxjs": "~6.4.0",
         "rxjs-compat": "^6.5.4",
+        "sweetalert2": "^9.10.12",
         "tslib": "^1.10.0",
-        "zone.js": "~0.9.1"
+        "zone.js": "~0.9.1",
+        "node": "16.0.16"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.803.21",

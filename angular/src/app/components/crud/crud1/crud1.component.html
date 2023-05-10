@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col text-right">
+        <button class="btn btn-danger p-2 m-1" (click)="onInit()">
+          <i class="fa fa-sync"></i>
+        Refresh
+      </button>
+        <button class="btn btn-primary p-2" (click)="newTab({url:crudModel.url, id:'new'})">
+        <i class="fa fa-plus"></i>
+        Agregar
+      </button>
+    </div>
+</div>
+
+<table *ngIf="!cargando && datos.length>0" class="table mt-3 animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <ng-container *ngFor="let thead of crudModel.theads ; let i=index">
+                <th *ngIf="thead.visible" scope="col">{{thead.label}}</th>
+            </ng-container>
+            <th scope="col">Tooles</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dato of datos ; let f=index">
+            <th scope="row">{{f+1}}</th>
+            <ng-container *ngFor="let thead of crudModel.theads ; let i=index">
+                <td *ngIf="thead.visible">
+                    <div *ngIf="thead.type==='text'">{{getValueKey(f,thead.name)}}</div>
+                    <div *ngIf="thead.type==='date'">{{getValueKey(f,thead.name)|date :'dd/MM/yyyy'}}</div>
+                    <div *ngIf="thead.type==='ObjectID'">{{getValueKey(f,thead.name)}}</div>
+                    <div *ngIf="thead.type==='error'" class="alert alert-danger">{{getValueKey(f,thead.name)}}</div>
+                    <!-- <div *ngIf="thead.type==='ObjectID'">{{i}}</div> -->
+                </td>
+            </ng-container>
+
+            <td>
+
+                <!-- [routerLink]="['/heroe',heroe.id] -->
+                <button class="btn btn-info mr-1" (click)="newTab({url:crudModel.url, id:dato._id})">
+              <i class="fa fa-pencil-alt fa-xs"></i>
+            </button>
+                <button class="btn btn-danger mr-1 " (click)="deleteDato(dato, f)">
+              <i class="fa fa-trash fa-xs"></i>
+            </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">
+        Cargando
+    </h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Espere por favor
+    </p>
+</div>
+
+<div *ngIf="!cargando && datos.length===0 " class="alert alert-warning text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">
+        No hay registros
+    </h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+
+</div>

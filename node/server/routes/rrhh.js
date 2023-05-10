@@ -11,7 +11,7 @@ let RRHH = require('../models/rrhh');
 // ============================
 app.get('/rrhh', verificaToken, (req, res) => {
 
-    RRHH.find({})
+    RRHH.find({ estado: true })
         .sort('apellidos')
         .exec((err, rrhh) => {
 
@@ -24,7 +24,7 @@ app.get('/rrhh', verificaToken, (req, res) => {
 
             res.json({
                 ok: true,
-                rrhh
+                data: rrhh
             });
 
         });
@@ -59,7 +59,7 @@ app.get('/rrhh/:id', verificaToken, (req, res) => {
 
         res.json({
             ok: true,
-            categoria: rrhhDB
+            data: rrhhDB
         });
 
     });
@@ -74,10 +74,13 @@ app.post('/rrhh', verificaToken, (req, res) => {
     // regresa la nueva categoria
     // req.usuario._id
     let body = req.body;
-
+    console.log(body, 'adddate');
+    //string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+    let nombres = body.nombres.charAt(0).toUpperCase() + body.nombres.slice(1).toLowerCase();
+    let apellidos = body.apellidos.charAt(0).toUpperCase() + body.apellidos.slice(1).toLowerCase();
     let rrhh = new RRHH({
-        nombres: body.nombres,
-        apellidos: body.apellidos,
+        nombres,
+        apellidos,
         email: body.email,
         dpi: body.dpi,
         telefonos: body.telefonos,
@@ -121,19 +124,8 @@ app.put('/rrhh/:id', verificaToken, (req, res) => {
 
     let id = req.params.id;
     let body = req.body;
-
-    let rrhh = {
-        nombres: body.nombres,
-        apellidos: body.apellidos,
-        email: body.email,
-        telefonos: body.telefonos,
-        dpi: body.dpi,
-        fecha: body.fecha,
-        estado: body.estado,
-        usuario: req.usuario._id
-    };
-
-    RRHH.findOneAndUpdate(id, rrhh, { new: true, runValidators: true }, (err, rrhhDB) => {
+    // console.log(body, 'update');
+    RRHH.findOneAndUpdate({ _id: id }, body, { new: true, runValidators: true }, (err, rrhhDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -148,7 +140,7 @@ app.put('/rrhh/:id', verificaToken, (req, res) => {
                 err
             });
         }
-
+        // console.log(rrhh);
         res.json({
             ok: true,
             rrhh: rrhhDB
@@ -167,7 +159,11 @@ app.delete('/rrhh/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
     // Categoria.findByIdAndRemove
     let id = req.params.id;
 
-    RRHH.findByIdAndRemove(id, (err, rrhhDB) => {
+    let cambio = {
+        estado: false
+    }
+
+    RRHH.findByIdAndUpdate(id, cambio, { new: true }, (err, rrhhDB) => {
 
         if (err) {
             return res.status(500).json({
@@ -187,10 +183,12 @@ app.delete('/rrhh/:id', [verificaToken, vefificaAdmin_Role], (req, res) => {
 
         res.json({
             ok: true,
-            message: 'rrhh Borrada'
+            message: 'Registro Borrado',
+            rrhhDB
         });
-
     });
+    //no
+
 
 
 });

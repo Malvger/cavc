@@ -1,2 +1,6 @@
-<p>contener works! {{contener}}</p>
+<!-- <p>contener works! {{contener}}</p> -->
 <app-op-gen-diaria *ngIf="contener=='app-op-gen-diaria'"></app-op-gen-diaria>
+<app-crud1 *ngIf="contener=='app-rrhh-personal'" crud="rrhh" [data]="data"></app-crud1>
+<app-crud1 *ngIf="contener=='app-rrhh-personal-temporal'" crud="trrhh" [data]="data"></app-crud1>
+<app-cu *ngIf="contener=='app-cu'" [data]="data"></app-cu>
+<!-- <app-op-gen-diaria *ngIf="contener=='app-op-gen-diaria'"></app-op-gen-diaria> -->

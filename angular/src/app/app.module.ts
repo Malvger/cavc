@@ -18,7 +18,12 @@ import { OpGenDiariaComponent } from './components/op/op-gen-diaria/op-gen-diari
 import { LoginComponent } from '../app/components/login/login.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { LocalStorageService } from './services/login/local-storage.service';
-
+import { Crud1Component } from './components/crud/crud1/crud1.component';
+import { RrhhService } from './services/crud/crud.rrhh.service';
+import { crud1Service } from './services/crud/crud1.service';
+import { CuComponent } from './components/crud/crud1/cu/cu.component';
+import { Crud1ElementService } from './services/crud/crud1.element.service';
+import { FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,9 @@ import { LocalStorageService } from './services/login/local-storage.service';
     ContenerComponent,
     OpGenDiariaComponent,
     LoginComponent,
-    FormularioComponent
+    FormularioComponent,
+    Crud1Component,
+    CuComponent
 
   ],
   imports: [
@@ -42,9 +49,17 @@ import { LocalStorageService } from './services/login/local-storage.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
 
     ],
-  providers: [LoginService , MenuService, LocalStorageService],
+  providers: [
+    LoginService ,
+    MenuService,
+    LocalStorageService,
+    RrhhService,
+    crud1Service,
+    Crud1ElementService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,11 +18,11 @@ export class MenuComponent implements OnInit {
     this.getMenus();
   }
 
-  public  newTab(name: string, contener: string) {
+  public  newTab(name: string, contener: string, data: any = '') {
     if (contener) {
       if (contener.length  !== 0) {
         const activate = true;
-        this._menuService.newTab({name, contener, activate});
+        this._menuService.newTab({name, contener, activate, data});
       }
     }
   }
