@@ -1,0 +1,26 @@
+<div>
+    <div class="sidenav" id="content">
+        <div class="login-main-text">
+            <h1>SOME</h1>
+            <p>Hidro Jumina S.A. && Hidro Sacpur S.A.</p>
+        </div>
+    </div>
+    <div class="main ">
+        <div class="col-md-6 col-sm-12 ">
+            <div class="login-form ">
+                <form>
+                    <div class="form-group ">
+                        <label>Nombre de usuario</label>
+                        <input type="text " #email class="form-control " placeholder="User Name ">
+                    </div>
+                    <div class="form-group ">
+                        <label>Contraseña</label>
+                        <input type="password " #password class="form-control " placeholder="Password ">
+                    </div>
+                    <div *ngIf="alerta" class="alert alert-danger">Las credenciales no son validas</div>
+                    <button (click)="postLogin(email.value, password.value)" type="button" class="btn btn-black ">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

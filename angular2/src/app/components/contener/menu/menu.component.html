@@ -1,0 +1,17 @@
+<div class="nav-side-menu">
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <div *ngFor="let item of menus; let i=index">
+                <li (click)="newTab(item.nombre,item.contener)" data-toggle="collapse" [attr.data-target]="'#menu' + i " class="collapsed">
+                    <a><i [class]="item.class"></i>{{item.nombre}} <span *ngIf="item.submenus.length!=0" class="arrow"></span></a>
+                </li>
+                <ul *ngFor="let item2 of getSubMenu(menus,i); let i2=index" (click)="newTab(item2.nombre,item2.contener,{name:item2.nombre})" class="sub-menu collapse" [id]="'menu' + i">
+                    <li><a>{{item2.nombre}}</a></li>
+                </ul>
+            </div>
+
+
+        </ul>
+    </div>
+
+</div>

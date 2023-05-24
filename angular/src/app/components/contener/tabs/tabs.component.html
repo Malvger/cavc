@@ -1,0 +1,32 @@
+<div class="container-fluid float-left">
+    <nav>
+        <div class="nav nav-tabs">
+            <div *ngFor="let tab of tabs ; let i=index" [class]="'' + getActivate(i)" (click)="selectTab(tab)">{{tab.name}}
+                <div class="zmdi zmdi-close zmdi-hc-1x ml-2 text-white" (click)="closeTab(i)"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="tab-content">
+        <div *ngFor="let panel of tabs ; let f=index" [hidden]="!panel.activate">
+            <!-- <h2>{{panel.name + f}}</h2> -->
+            <app-contener [contener]='panel.contener' [data]='panel.data'></app-contener>
+        </div>
+    </div>
+</div>
+<!--
+
+<div class="container-fluid float-left">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <div *ngFor="let tab of tabs ; let i=index" [class]="'' + getActivate(i)" [id]="'nav-tab-' + i" data-toggle="tab" [attr.href]="'#nav-' + i " role="tab" [attr.controls]="'#nav-' + i" aria-selected="true">{{tab.name}}
+                <div class="zmdi zmdi-close-circle zmdi-hc-1x ml-2 text-danger" (click)="closeTab(i)"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div *ngFor="let panel of tabs ; let f=index" [class]="'' + getActivate(f,1) " [id]="'nav-' + f" role="tabpanel" [attr.aria-labelledby]="'nav-tab-' + f">
+            <h2>{{panel.name + f}}</h2>
+            <app-contener [contener]='panel.contener'></app-contener>
+        </div>
+    </div>
+</div> -->

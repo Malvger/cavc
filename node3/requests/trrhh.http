@@ -1,0 +1,11 @@
+@api=http://localhost:5000/trrhh/
+###
+GET {{api}}
+###
+POST  {{api}}
+Content-Type: application/json
+
+{
+    "perfil" : "1"
+}
+###

@@ -1,0 +1,14 @@
+.dropdown-menu {
+    top: 3rem;
+    width: 200px;
+}
+
+.piclogin {
+    width: 32px;
+}
+
+.username {
+    width: 100%;
+    text-align: center;
+    /* top: 0; */
+} 

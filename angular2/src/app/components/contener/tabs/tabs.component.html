@@ -1,0 +1,14 @@
+<div class="container-fluid float-left">
+    <nav>
+        <div class="nav nav-tabs">
+            <div *ngFor="let tab of tabs ; let i=index" [class]="'' + getActivate(i)" (click)="selectTab(tab)">{{tab.name}}
+                <div class="zmdi zmdi-close zmdi-hc-1x ml-2 text-white" (click)="closeTab(i)"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="tab-content">
+        <div *ngFor="let panel of tabs ; let f=index" [hidden]="!panel.activate">
+            <app-contener [contener]='panel.contener' [data]='panel.data'></app-contener>
+        </div>
+    </div>
+</div>

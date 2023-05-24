@@ -1,0 +1,297 @@
+<div style="clear:both">
+    <button (click)="printMe()">Print Me</button>
+    <div id="print_me" class="yui-t7">
+        <div id="showPrint" style="width: 100%; text-align: right; padding-top: 8px; padding-bottom: 8px;">
+            <a href="javascript:clickme();" class="convertPDF" id="convertPDF">Convert To PDF</a>
+        </div>
+        <div id="inner">
+            <div id="hd">
+                <div class="yui-gc">
+                    <table>
+                        <tr>
+                            <td style="width:55%">
+
+                                <div class="yui-u first">
+                                    <div class="contact-info">
+                                        <h3><img id="displayPic" src="" alt=""></h3>
+                                    </div>
+                                    <!--// .contact-info -->
+                                </div>
+                            </td>
+                            <td style="width:40%">
+                                <div>
+                                    <h1>
+                                        <font color="#003893" face="Georgia">Curriculum Vitae</font>
+                                    </h1>
+                                    <h2><span id="FullName"></span></h2>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <!--// .yui-gc -->
+            </div>
+            <!--// hd -->
+
+
+
+            <div id="bd">
+                <div id="yui-main">
+                    <div class="yui-b">
+
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Personal Data</h2>
+                            </div>
+                            <div class="yui-u">
+                                <div class="talent">
+                                    <h2>Residence</h2>
+                                    <p><span id="FullAddress"></span></p>
+                                </div>
+
+                                <div class="talent">
+                                    <h2>Primary Office</h2>
+                                    <p><span id="FullOfficeInfo"></span></p>
+                                </div>
+
+                                <div class="talent">
+                                    <h2>Telephone Numbers</h2>
+                                    <p><span id="FullPhoneInfo"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <!--					<div class="yui-gf">
+						<div class="yui-u first">
+							<h2>EDUCATION</h2>
+						</div>
+						<div class="yui-u">
+ 
+								<div class="talent">
+									<h2>Web Design</h2>
+									<p>Assertively exploit wireless initiatives rather than synergistic core competencies.	</p>
+								</div>
+ 
+								<div class="talent">
+									<h2>Interface Design</h2>
+									<p>Credibly streamline mission-critical value with multifunctional functionalities.	 </p>
+								</div>
+ 
+								<div class="talent">
+									<h2>Project Direction</h2>
+									<p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>
+								</div>
+						</div>
+					</div>-->
+                        <!--// .yui-gf -->
+
+                        <!--					<div class="yui-gf">
+						<div class="yui-u first">
+							<h2>Technical</h2>
+						</div>
+						<div class="yui-u">
+							<ul class="talent">
+								<li>XHTML</li>
+								<li>CSS</li>
+								<li class="last">Javascript</li>
+							</ul>
+ 
+							<ul class="talent">
+								<li>Jquery</li>
+								<li>PHP</li>
+								<li class="last">CVS / Subversion</li>
+							</ul>
+ 
+							<ul class="talent">
+								<li>OS X</li>
+								<li>Windows XP/Vista</li>
+								<li class="last">Linux</li>
+							</ul>
+						</div>
+					</div>-->
+                        <!--// .yui-gf-->
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Education</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='EducationInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Clinical Employment History</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='EmploymentInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Clinical Appointments</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='ClinicalApptInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Academic Appointments</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='AcademicApptInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Professional Affiliations</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='ProfApptInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf bottommarg">
+
+                            <div class="yui-u first">
+                                <h2>Presentations</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='PresentationInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Publications</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='PublicationInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf onlyprint">
+
+                            <div class="yui-u first">
+                                <h2>Awards + Honors</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='AwardsHonorsInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf">
+
+                            <div class="yui-u first">
+                                <h2>Gap History</h2>
+                            </div>
+                            <!--// .yui-u -->
+
+                            <div class="yui-u">
+
+                                <span id='GapHistoryInfo'></span>
+
+                            </div>
+                            <!--// .yui-u -->
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Medical Licensure</h2>
+                            </div>
+                            <span id='LicenseInfo'></span>
+                        </div>
+                        <!--// .yui-gf -->
+
+                        <div class="yui-gf last">
+                            <div class="yui-u first">
+                                <h2>Specialities</h2>
+                            </div>
+                            <div class="yui-u">
+                                <span id='SpecialtiesInfo'></span>
+                            </div>
+                        </div>
+                        <!--// .yui-gf -->
+
+
+                    </div>
+                    <!--// .yui-b -->
+                </div>
+                <!--// yui-main -->
+            </div>
+            <!--// bd -->
+
+            <div id="ft">
+                <p>Carianne DeGennaro-Zimny &mdash; <a href="mailto:czimny@westmedgroup.com">czimny@westmedgroup.com</a> &mdash; 914-793-2964</p>
+            </div>
+            <!--// footer -->
+
+        </div>
+        <!-- // inner -->
+
+
+    </div>
+    <!--// doc -->
+</div>

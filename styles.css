@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+.page-wrapper {
+    background: #eef5f9;
+    position: relative
+}
+
+.page-wrapper>.container-fluid {
+    padding: 20px;
+    min-height: calc(100vh - 180px)
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.footer {
+    padding: 15px 20px
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    color: #3e5569;
+    background: #fff
+}
+
+html {
+    position: relative;
+    min-height: 100%
+}
+
+.topbar {
+    position: relative;
+    z-index: 50;
+    -webkit-box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    height: 64px
+}
+
+.left-sidebar {
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    top: 0px;
+    z-index: 10;
+    padding-top: 64px;
+    background: #fff;
+    -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08)
+}
+
+.scroll-sidebar {
+    height: calc(100% - 20px);
+    position: relative
+}
