@@ -21,7 +21,7 @@
         "html-pdf": "^2.2.0",
         "https": "^1.0.0",
         "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.9.20",
+        "mongoose": "^6.13.6",
         "mongoose-unique-validator": "^2.0.3",
         "node-pre-gyp": "^0.13.0",
         "nodemon": "^2.0.2",
